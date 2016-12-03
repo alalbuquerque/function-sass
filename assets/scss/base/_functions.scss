@@ -1,0 +1,14 @@
+////
+// @function color-get($key, $opacity: 1, $lighten: 0, $map: $site-colors)
+// $key: key to be retrieved from the map
+// $opacity: A number between 0 and 1. Defaults to 1
+// $lighten: A percentage between -100% and 100%. Defaults to 0
+// $map: the map that our $key will be pulled from. Defaults to $site-colors, rarely changed
+////
+ 
+@function color($key, $opacity: 1, $lighten: 0, $map: $colors) {
+      $value: map-get($map, $key);
+      $value: rgba($value, $opacity);
+      $value: call(if($lighten >= 0, lighten, darken), $value, abs($lighten));
+      @return $value
+}
